@@ -4,6 +4,7 @@ import home from './api/home';
 import heatPump from './api/heatPump';
 import dashboard from './api/dashboard';
 import zone1 from './api/zone1';
+import zone2 from './api/zone2';
 import solar from './api/solar';
 import path from 'path';
 import { port } from './config/config';
@@ -21,6 +22,7 @@ app.use('/home', home);
 app.use('/heatPump', heatPump);
 app.use('/dashboard', dashboard);
 app.use('/zone1', zone1);
+app.use('/zone2', zone2);
 app.use('/solar', solar);
 app.use(swaggerRouter);
 

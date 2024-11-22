@@ -3,13 +3,13 @@ import { extendZodWithOpenApi } from 'zod-openapi';
 
 extendZodWithOpenApi(z);
 
-export const zone1RequestBodySchema = z
+export const zone2RequestBodySchema = z
   .object({
     winterSummerPeriodState: z.boolean().optional(),
   })
   .strict();
 
-export const zone1ResponseSchema = z
+export const zone2ResponseSchema = z
   .object({
     name: z.string().optional(),
     serviceEnabled: z.boolean().optional(),
@@ -26,7 +26,7 @@ export const zone1ResponseSchema = z
   })
   .strict()
   .openapi({
-    description: 'Response object of zone 1',
+    description: 'Response object of zone 2',
   });
 
-export type Zone1ResponseData = z.infer<typeof zone1ResponseSchema>;
+export type Zone2ResponseData = z.infer<typeof zone2ResponseSchema>;
