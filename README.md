@@ -1,6 +1,6 @@
 # Regulus API Package
 
-![npm](https://www.npmjs.com/package/regulus-api)
+[![npm](https://img.shields.io/npm/v/regulus-api.svg)](https://www.npmjs.com/package/<regulus-api>)
 
 This is a basic Express API for Regulus heat pumps controlled by PLC IR14CTC. 
 It helps developers or advanced users to integrate heat pump data to any smart solution eg: Home Assistant. You can get the most necessary information from your heat pump machine like sensor temperatures, statuses, time and others. You dont need internet connection, just local IP address, that your device is running on.
