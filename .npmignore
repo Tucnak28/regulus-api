@@ -1,0 +1,5 @@
+# src
+src
+node_modules
+.env
+.gitignore
