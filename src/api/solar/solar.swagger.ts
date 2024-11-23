@@ -14,9 +14,6 @@ export const solarPath = {
             },
           },
         },
-        400: {
-          description: 'Bad Request',
-        },
       },
     },
     patch: {

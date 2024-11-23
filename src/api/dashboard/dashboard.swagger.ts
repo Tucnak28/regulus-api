@@ -14,9 +14,6 @@ export const dashboardPath = {
             },
           },
         },
-        400: {
-          description: 'Bad Request',
-        },
       },
     },
   },

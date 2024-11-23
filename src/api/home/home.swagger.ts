@@ -14,9 +14,6 @@ export const homePath = {
             },
           },
         },
-        400: {
-          description: 'Bad Request',
-        },
       },
     },
   },

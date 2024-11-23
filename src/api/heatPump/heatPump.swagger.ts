@@ -14,9 +14,6 @@ export const heatPumpPath = {
             },
           },
         },
-        400: {
-          description: 'Bad Request',
-        },
       },
     },
   },

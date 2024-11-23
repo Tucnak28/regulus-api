@@ -14,9 +14,6 @@ export const zone2Path = {
             },
           },
         },
-        400: {
-          description: 'Bad Request',
-        },
       },
     },
     patch: {
