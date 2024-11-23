@@ -19,6 +19,7 @@
     "src/**/*",
     "src/**/*.json",
   ],
+  "exclude": ["**/*.test.ts"],
   "watchOptions": {
     "watchFile": "useFsEvents",
     "watchDirectory": "useFsEvents",
