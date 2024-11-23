@@ -5,7 +5,7 @@ extendZodWithOpenApi(z);
 
 export const zone1RequestBodySchema = z
   .object({
-    winterSummerPeriodState: z.boolean().optional(),
+    zone1WinterSummerModeByDateState: z.boolean().optional(),
   })
   .strict();
 
