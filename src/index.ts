@@ -1,11 +1,13 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
 import swaggerRouter from './swagger';
-import home from './api/home';
-import heatPump from './api/heatPump';
-import dashboard from './api/dashboard';
-import zone1 from './api/zone1';
-import zone2 from './api/zone2';
-import solar from './api/solar';
+import homeRouter from './api/home';
+import heatPumpRouter from './api/heatPump';
+import dashboardRouter from './api/dashboard';
+import zone1Router from './api/zone1';
+import zone2Router from './api/zone2';
+import solarRouter from './api/solar';
+import waterRouter from './api/water';
+import recirculationRouter from './api/recirculation';
 import path from 'path';
 import { port } from './config/config';
 import { UnAuthorizedError } from './exception/unAuthorizedError';
@@ -18,12 +20,14 @@ const app: Express = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '/')));
 
-app.use('/home', home);
-app.use('/heatPump', heatPump);
-app.use('/dashboard', dashboard);
-app.use('/zone1', zone1);
-app.use('/zone2', zone2);
-app.use('/solar', solar);
+app.use('/home', homeRouter);
+app.use('/heatPump', heatPumpRouter);
+app.use('/dashboard', dashboardRouter);
+app.use('/zone1', zone1Router);
+app.use('/zone2', zone2Router);
+app.use('/solar', solarRouter);
+app.use('/water', waterRouter);
+app.use('/recirculation', recirculationRouter);
 app.use(swaggerRouter);
 
 app.get('/', (req, res) => {

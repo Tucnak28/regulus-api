@@ -41,8 +41,8 @@ const circulationSchema = z.object({
 
 export const dashboardResponseSchema = z.object({
   outdoorTemperature: z.string().optional(),
-  rcTariff: z.boolean().optional(),
-  holiday: z.boolean().optional(),
+  rcTariff: z.string().optional(),
+  holiday: z.string().optional(),
   heatPump: heatPumpSchema,
   zone1: zoneSchema,
   zone2: zoneSchema,

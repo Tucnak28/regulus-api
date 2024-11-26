@@ -8,8 +8,8 @@ export class DashboardResponseHandler implements ResponseHandler {
     const schemaXmlMap = await parseXmlToMap(data);
     return {
       outdoorTemperature: getValueFromMap(schemaXmlMap, 'outdoorTemperature'),
-      rcTariff: getValueFromMap(schemaXmlMap, 'rcTariff') === '1',
-      holiday: getValueFromMap(schemaXmlMap, 'holiday') === '1',
+      rcTariff: getValueFromMap(schemaXmlMap, 'rcTariff') == '1' ? 'LOW' : 'HIGH',
+      holiday: getValueFromMap(schemaXmlMap, 'holiday') == '1' ? 'ON' : 'OFF',
       heatPump: {
         runningStatus: getValueFromMap(schemaXmlMap, 'heatPumpRunningStatus') !== '0',
         outletTemperature: getValueFromMap(schemaXmlMap, 'heatPumpOutletTemperature'),
@@ -37,7 +37,7 @@ export class DashboardResponseHandler implements ResponseHandler {
       },
       water: {
         status: getValueFromMap(schemaXmlMap, 'waterRunningStatusFromHeatPump') === '1',
-        actualTemperature: getValueFromMap(schemaXmlMap, 'waterTemperature'),
+        actualTemperature: getValueFromMap(schemaXmlMap, 'waterSwitchingSensorTemperature'),
         requiredTemperature: getValueFromMap(schemaXmlMap, 'waterRequiredTemperature'),
       },
       solar: {
@@ -47,30 +47,6 @@ export class DashboardResponseHandler implements ResponseHandler {
       circulation: {
         status: getValueFromMap(schemaXmlMap, 'circulationRunningStatus') === '1',
       },
-
-      // outdoorTemperature: getValueFromMap(schemaXmlMap, 'outdoorTemperature'),
-      // heatPumpRunningStatus: getValueFromMap(schemaXmlMap, 'heatPumpRunningStatus') !== '0',
-      // outletTemperature: getValueFromMap(schemaXmlMap, 'outletTemperature'),
-      // inletTemperature: getValueFromMap(schemaXmlMap, 'inletTemperature'),
-      // zone1HeatingWaterTemperature: getValueFromMap(schemaXmlMap, 'zone1HeatingWaterTemperature'),
-      // zone1RequiredHeatingWaterTemperature: getValueFromMap(schemaXmlMap, 'zone1RequiredHeatingWaterTemperature'),
-      // zone1Temperature: getValueFromMap(schemaXmlMap, 'zone1Temperature'),
-      // zone1RequiredTemperature: getValueFromMap(schemaXmlMap, 'zone1RequiredTemperature'),
-      // zone1RunningStatus: getValueFromMap(schemaXmlMap, 'zone1RunningStatus') !== '0',
-      // zone2HeatingTemperature: getValueFromMap(schemaXmlMap, 'zone2HeatingTemperature'),
-      // zone2HeatingRequiredTemperature: getValueFromMap(schemaXmlMap, 'zone2HeatingRequiredTemperature'),
-      // zone2Temperature: getValueFromMap(schemaXmlMap, 'zone2Temperature'),
-      // zone2RequiredTemperature: getValueFromMap(schemaXmlMap, 'zone2RequiredTemperature'),
-      // zone2RunningStatus: getValueFromMap(schemaXmlMap, 'zone2RunningStatus') !== '0',
-      // akuTopTemperature: getValueFromMap(schemaXmlMap, 'akuTopTemperature'),
-      // akuBottomTemperature: getValueFromMap(schemaXmlMap, 'akuBottomTemperature'),
-      // akuRunningStatusFromHeatPump: getValueFromMap(schemaXmlMap, 'akuRunningStatusFromHeatPump') === '1',
-      // waterTemperature: getValueFromMap(schemaXmlMap, 'waterTemperature'),
-      // waterRequiredTemperature: getValueFromMap(schemaXmlMap, 'waterRequiredTemperature'),
-      // waterRunningStatusFromHeatPump: getValueFromMap(schemaXmlMap, 'waterRunningStatusFromHeatPump') === '1',
-      // solarTemperature: getValueFromMap(schemaXmlMap, 'solarTemperature'),
-      // solarRunningStatus: getValueFromMap(schemaXmlMap, 'solarRunningStatus') === '1',
-      // circulationRunningStatus: getValueFromMap(schemaXmlMap, 'circulationRunningStatus') === '1',
     };
   }
 }

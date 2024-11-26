@@ -18,7 +18,7 @@ export const heatPumpResponseSchema = z
   .object({
     serviceEnabled: z.boolean().optional(),
     status: z.string().optional(),
-    compressor: z.boolean().optional(),
+    compressor: z.string().optional(),
     outletTemperature: z.string().optional(),
     inletTemperature: z.string().optional(),
     runningStatus: z.boolean().optional(),

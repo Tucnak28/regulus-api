@@ -7,9 +7,9 @@ export class HeatPumpResponseHandler implements ResponseHandler {
     console.log('Successfully fetched `/heatPump` data');
     const schemaXmlMap = await parseXmlToMap(data);
     return {
-      serviceEnabled: getValueFromMap(schemaXmlMap, 'hpServiceEnabled') === '1', //ON/OFF
+      serviceEnabled: getValueFromMap(schemaXmlMap, 'hpServiceEnabled') === '1',
       status: getValueFromMap(schemaXmlMap, 'hpStatus'),
-      compressor: getValueFromMap(schemaXmlMap, 'hpCompressor') === '1', // STOPPED = 0, RUNNING = 1
+      compressor: getValueFromMap(schemaXmlMap, 'hpCompressor') == '1' ? 'RUNNING' : 'STOPPED',
       outletTemperature: getValueFromMap(schemaXmlMap, 'hpOutletTemperature'),
       inletTemperature: getValueFromMap(schemaXmlMap, 'hpInletTemperature'),
       runningStatus: getValueFromMap(schemaXmlMap, 'hpRunningStatus') === '1',
