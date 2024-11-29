@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { AbstractApiInterface } from './abstractApiInterface';
 import { ResponseHandler } from './responseHandler';
 
@@ -7,10 +8,10 @@ export abstract class AbstractApi {
   abstract page: string;
   abstract handler: ResponseHandler;
 
-  fetch(): Promise<any> {
+  fetch(): Promise<AxiosResponse> {
     return this.abstractApiInterface.execute(() => this.abstractApiInterface.fetch(this.page), this.handler);
   }
-  update(body: any): Promise<any> {
+  update(body: any): Promise<AxiosResponse> {
     return this.abstractApiInterface.execute(() => this.abstractApiInterface.update(this.page, body), this.handler);
   }
 }

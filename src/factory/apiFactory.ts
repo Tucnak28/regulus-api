@@ -9,9 +9,10 @@ import { ApiService } from '../service/apiService';
 import { Zone2Api } from '../api/zone2/zone2Api';
 import { RecirculationApi } from '../api/recirculation/recirculationApi';
 import { WaterApi } from '../api/water/waterApi';
+import { AxiosResponse } from 'axios';
 
 export class ApiFactory {
-  static async redirectTo(redirect: string): Promise<any> {
+  static redirectTo(redirect: string): Promise<AxiosResponse> {
     const apiService = new ApiService();
 
     const pageMapper = new Map<string, AbstractApi>([
@@ -30,6 +31,6 @@ export class ApiFactory {
       throw new UnknownApiTypeError(redirect);
     }
 
-    return await apiInstance.fetch();
+    return apiInstance.fetch();
   }
 }

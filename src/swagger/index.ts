@@ -9,6 +9,7 @@ import { homePath } from '../api/home/home.swagger';
 import { zone2Path } from '../api/zone2/zone2.swagger';
 import { waterPath } from '../api/water/water.swagger';
 import { recirculationPath } from '../api/recirculation/recirculation.swagger';
+import { downloadPath } from '../api/download/download.swagger';
 
 const swaggerRouter = Router();
 
@@ -31,6 +32,7 @@ const wholeApiDocument = createDocument({
     ...solarPath,
     ...waterPath,
     ...recirculationPath,
+    ...downloadPath,
   },
 });
 
