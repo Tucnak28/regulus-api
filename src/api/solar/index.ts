@@ -1,12 +1,10 @@
 import express, { Router } from 'express';
-import { ApiService } from '../../service/apiService';
-import { SolarApi } from './solarApi';
-import { solarRequestBodySchema } from './solarSchemas';
+import { SolarApi } from './solarApi.js';
+import { solarRequestBodySchema } from './solarSchemas.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-const solarApi = new SolarApi(apiService);
+const solarApi = new SolarApi();
 
 router.get('/', async (req, res, next) => {
   try {

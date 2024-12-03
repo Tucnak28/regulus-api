@@ -1,15 +1,15 @@
 import swaggerUiExpress from 'swagger-ui-express';
 import { Router } from 'express';
-import { zone1Path } from '../api/zone1/zone1.swagger';
+import { zone1Path } from '../api/zone1/zone1.swagger.js';
 import { createDocument } from 'zod-openapi';
-import { dashboardPath } from '../api/dashboard/dashboard.swagger';
-import { heatPumpPath } from '../api/heatPump/heatPump.swagger';
-import { solarPath } from '../api/solar/solar.swagger';
-import { homePath } from '../api/home/home.swagger';
-import { zone2Path } from '../api/zone2/zone2.swagger';
-import { waterPath } from '../api/water/water.swagger';
-import { recirculationPath } from '../api/recirculation/recirculation.swagger';
-import { downloadPath } from '../api/download/download.swagger';
+import { dashboardPath } from '../api/dashboard/dashboard.swagger.js';
+import { heatPumpPath } from '../api/heatPump/heatPump.swagger.js';
+import { solarPath } from '../api/solar/solar.swagger.js';
+import { homePath } from '../api/home/home.swagger.js';
+import { zone2Path } from '../api/zone2/zone2.swagger.js';
+import { waterPath } from '../api/water/water.swagger.js';
+import { recirculationPath } from '../api/recirculation/recirculation.swagger.js';
+import { downloadPath } from '../api/download/download.swagger.js';
 
 const swaggerRouter = Router();
 

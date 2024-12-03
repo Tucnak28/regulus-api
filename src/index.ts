@@ -1,26 +1,26 @@
 import express, { Express, Request, Response, NextFunction } from 'express';
-import swaggerRouter from './swagger';
-import homeRouter from './api/home';
-import heatPumpRouter from './api/heatPump';
-import dashboardRouter from './api/dashboard';
-import zone1Router from './api/zone1';
-import zone2Router from './api/zone2';
-import solarRouter from './api/solar';
-import waterRouter from './api/water';
-import recirculationRouter from './api/recirculation';
-import downloadRouter from './api/download';
+import swaggerRouter from './swagger/index.js';
+import homeRouter from './api/home/index.js';
+import heatPumpRouter from './api/heatPump/index.js';
+import dashboardRouter from './api/dashboard/index.js';
+import zone1Router from './api/zone1/index.js';
+import zone2Router from './api/zone2/index.js';
+import solarRouter from './api/solar/index.js';
+import waterRouter from './api/water/index.js';
+import recirculationRouter from './api/recirculation/index.js';
+import downloadRouter from './api/download/index.js';
 import path from 'path';
-import { port } from './config/config';
-import { UnAuthorizedError } from './exception/unAuthorizedError';
-import { IllegalStatusError } from './exception/illegalStatusError';
-import { UnknownApiTypeError } from './exception/unknownApiTypeError';
+import { port } from './config/config.js';
+import { UnAuthorizedError } from './exception/unAuthorizedError.js';
+import { IllegalStatusError } from './exception/illegalStatusError.js';
+import { UnknownApiTypeError } from './exception/unknownApiTypeError.js';
 import { ZodError } from 'zod';
 import { AxiosError } from 'axios';
 
 const app: Express = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '/')));
+app.use(express.static(path.join(process.cwd(), './dist/')));
 
 app.use('/home', homeRouter);
 app.use('/heatPump', heatPumpRouter);
@@ -34,10 +34,10 @@ app.use('/download', downloadRouter);
 app.use(swaggerRouter);
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'app.html'));
+  res.sendFile(path.join(process.cwd(), 'index.html'));
 });
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof SyntaxError && 'body' in err) {
     res.status(400).json({ error: 'Invalid JSON format. Please check your request body.' });
   } else if (err instanceof AxiosError) {
@@ -55,7 +55,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+app.use((err: Error, req: Request, res: Response) => {
   console.error(err);
   res.status(500).json({ message: 'Unexpected error!' });
 });

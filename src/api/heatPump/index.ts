@@ -1,11 +1,9 @@
 import express, { Router } from 'express';
-import { HeatPumpApi } from './heatPumpApi';
-import { ApiService } from '../../service/apiService';
+import { HeatPumpApi } from './heatPumpApi.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-const heatPumpApi = new HeatPumpApi(apiService);
+const heatPumpApi = new HeatPumpApi();
 
 router.get('/', async (req, res, next) => {
   try {

@@ -1,5 +1,31 @@
-import { registryMapper } from '../mapper/registryMapper';
+import { registryMapper } from '../mapper/registryMapper.js';
 import xml2js from 'xml2js';
+
+interface Input {
+  $?: {
+    NAME: string;
+    VALUE: string;
+  };
+}
+
+interface Page {
+  INPUT: Input | Input[];
+}
+
+interface Acer {
+  $?: {
+    VALUE: string;
+  };
+}
+
+interface Login {
+  ACER: Acer;
+}
+
+interface ParsedXml {
+  PAGE: Page;
+  LOGIN: Login;
+}
 
 export async function parseXmlToMap(xml: string): Promise<Map<string, string>> {
   return parseXml(getRegistryMap, xml);
@@ -9,26 +35,28 @@ export async function parseAcerValue(xml: string): Promise<string> {
   return parseXml(getAcerValue, xml);
 }
 
-async function getRegistryMap(parsed: any): Promise<Map<string, string>> {
+async function getRegistryMap(parsed: ParsedXml): Promise<Map<string, string>> {
   const map = new Map<string, string>();
 
   const inputs = parsed.PAGE.INPUT;
   const parsedInputs = Array.isArray(inputs) ? inputs : [inputs];
 
   parsedInputs.forEach((input) => {
-    map.set(input.$?.NAME, input.$?.VALUE);
+    const name = input.$?.NAME || 'UNKNOWN';
+    const value = input.$?.VALUE || '';
+    map.set(name, value);
   });
   return map;
 }
 
-async function getAcerValue(parsed: any): Promise<string> {
-  return parsed.LOGIN.ACER.$?.VALUE;
+async function getAcerValue(parsed: ParsedXml): Promise<string> {
+  return parsed.LOGIN.ACER.$?.VALUE || '';
 }
 
-async function parseXml<T>(operation: (parsed: any) => Promise<T>, xml: string): Promise<T> {
-  return new Promise((resolve, reject) => {
+async function parseXml<T>(operation: (parsed: ParsedXml) => Promise<T>, xml: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
     const parser = new xml2js.Parser();
-    parser.parseString(xml, async (err: any, result: any) => {
+    parser.parseString(xml, async (err, result) => {
       if (err) {
         console.error('Error parsing XML:', err);
         reject(err);

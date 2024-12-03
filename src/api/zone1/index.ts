@@ -1,12 +1,10 @@
 import express, { Router } from 'express';
-import { ApiService } from '../../service/apiService';
-import { Zone1Api } from './zone1Api';
-import { zone1RequestBodySchema } from './zone1Schemas';
+import { Zone1Api } from './zone1Api.js';
+import { zone1RequestBodySchema } from './zone1Schemas.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-const zone1 = new Zone1Api(apiService);
+const zone1 = new Zone1Api();
 
 router.get('/', async (req, res, next) => {
   try {
@@ -19,7 +17,7 @@ router.get('/', async (req, res, next) => {
 
 router.patch('/', async (req, res, next) => {
   try {
-    req.headers['content-type'] == 'application/json';
+    req.headers['content-type'] = 'application/json';
     const body = zone1RequestBodySchema.parse(req.body);
     const data = await zone1.update(body);
     res.status(200).json(data);

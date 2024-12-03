@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
+    "target": "ESNext",
+    "module": "ESNext",
     "lib": [
-      "ES2016"
+      "ESNext"
     ],
     "strict": true,
     "outDir": "./dist",
@@ -19,7 +19,9 @@
     "src/**/*",
     "src/**/*.json",
   ],
-  "exclude": ["**/*.test.ts"],
+  "exclude": [
+    "**/*.test.ts"
+  ],
   "watchOptions": {
     "watchFile": "useFsEvents",
     "watchDirectory": "useFsEvents",

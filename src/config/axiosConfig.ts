@@ -22,7 +22,8 @@ axiosInstance.interceptors.response.use(
 
 axiosInstance.interceptors.request.use(
   (config: AxiosRequestConfig) => {
-    (config.maxRedirects = 0), (config.validateStatus = (status: number) => status === 200 || status === 302);
+    config.maxRedirects = 0;
+    config.validateStatus = (status: number) => status == 200 || status == 302;
 
     if (!config.headers) {
       config.headers = {};

@@ -1,4 +1,4 @@
-import { zone2RequestBodySchema, zone2ResponseSchema } from './zone2Schemas';
+import { zone2RequestBodySchema, zone2ResponseSchema } from './zone2Schemas.js';
 
 export const zone2Path = {
   '/zone2': {

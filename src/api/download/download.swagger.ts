@@ -1,5 +1,5 @@
 import { ParameterObject } from 'zod-openapi/dist/openapi3-ts/dist/oas31';
-import { fileNotFoundResponse, fileRequiredResponse } from './downloadSchemas';
+import { fileNotFoundResponse, fileRequiredResponse } from './downloadSchemas.js';
 import { ZodOpenApiPathsObject } from 'zod-openapi';
 import { z } from 'zod';
 

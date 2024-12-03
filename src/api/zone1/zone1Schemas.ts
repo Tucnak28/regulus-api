@@ -30,3 +30,4 @@ export const zone1ResponseSchema = z
   });
 
 export type Zone1ResponseData = z.infer<typeof zone1ResponseSchema>;
+export type Zone1RequestData = z.infer<typeof zone1RequestBodySchema>;

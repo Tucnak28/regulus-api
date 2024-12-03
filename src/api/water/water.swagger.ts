@@ -1,4 +1,4 @@
-import { waterResponseSchema } from './waterSchemas';
+import { waterResponseSchema } from './waterSchemas.js';
 
 export const waterPath = {
   '/water': {

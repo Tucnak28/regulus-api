@@ -36,3 +36,4 @@ export const solarResponseSchema = z
   });
 
 export type SolarResponseData = z.infer<typeof solarResponseSchema>;
+export type SolarRequestData = z.infer<typeof solarRequestBodySchema>;

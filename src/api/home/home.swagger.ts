@@ -1,4 +1,4 @@
-import { homeResponseSchema } from './homeSchemas';
+import { homeResponseSchema } from './homeSchemas.js';
 
 export const homePath = {
   '/home': {

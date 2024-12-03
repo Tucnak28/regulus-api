@@ -1,17 +1,29 @@
 import { AxiosResponse } from 'axios';
-import { AbstractApiInterface } from './abstractApiInterface';
-import { ResponseHandler } from './responseHandler';
+import { LoginService } from './loginService.js';
+import { host } from '../config/config.js';
+import axiosInstance from '../config/axiosConfig.js';
 
-export abstract class AbstractApi {
-  constructor(protected abstractApiInterface: AbstractApiInterface) {}
-
+export abstract class AbstractApi<T> {
   abstract page: string;
-  abstract handler: ResponseHandler;
 
-  fetch(): Promise<AxiosResponse> {
-    return this.abstractApiInterface.execute(() => this.abstractApiInterface.fetch(this.page), this.handler);
+  fetch(): Promise<T> {
+    return this.execute(() => this.fetchImpl(this.page));
   }
-  update(body: any): Promise<AxiosResponse> {
-    return this.abstractApiInterface.execute(() => this.abstractApiInterface.update(this.page, body), this.handler);
+
+  fetchImpl(page: string): Promise<AxiosResponse> {
+    const apiUrl = `${host}${page}`;
+    return axiosInstance.get(apiUrl);
   }
+
+  async execute(operation: () => Promise<AxiosResponse>): Promise<T> {
+    const response = await operation();
+    if (response.status === 200) {
+      return this.getResponse(response.data);
+    }
+    console.log('Redirect detected, re-authenticating...');
+    LoginService.successLogin(response);
+    return this.fetch();
+  }
+
+  abstract getResponse(data: string): Promise<T>;
 }

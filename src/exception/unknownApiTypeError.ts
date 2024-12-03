@@ -1,4 +1,4 @@
-import { BadRequestError } from './badRequestError';
+import { BadRequestError } from './badRequestError.js';
 
 export class UnknownApiTypeError extends BadRequestError {
   constructor(redirect: string) {

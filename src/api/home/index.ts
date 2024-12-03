@@ -1,11 +1,9 @@
 import express, { Router } from 'express';
-import { HomeApi } from './homeApi';
-import { ApiService } from '../../service/apiService';
+import { HomeApi } from './homeApi.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-const homeApi = new HomeApi(apiService);
+const homeApi = new HomeApi();
 
 router.get('/', async (req, res, next) => {
   try {

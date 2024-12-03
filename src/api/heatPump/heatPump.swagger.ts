@@ -1,4 +1,4 @@
-import { heatPumpResponseSchema } from './heatPumpSchemas';
+import { heatPumpResponseSchema } from './heatPumpSchemas.js';
 
 export const heatPumpPath = {
   '/heatPump': {

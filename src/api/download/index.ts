@@ -1,14 +1,11 @@
 import express, { Router } from 'express';
-import { ApiService } from '../../service/apiService';
 import { AxiosError } from 'axios';
-import { host } from '../../config/config';
-import axiosInstance, { softPLCCookie } from '../../config/axiosConfig';
-import { BadRequestError } from '../../exception/badRequestError';
-import { LoginService } from '../../service/loginService';
+import { host } from '../../config/config.js';
+import axiosInstance, { softPLCCookie } from '../../config/axiosConfig.js';
+import { BadRequestError } from '../../exception/badRequestError.js';
+import { LoginService } from '../../service/loginService.js';
 
 const router: Router = express.Router();
-
-const apiService = new ApiService();
 
 router.get('/', async (req, res, next) => {
   const { fileName } = req.query;

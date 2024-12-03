@@ -1,11 +1,9 @@
 import express, { Router } from 'express';
-import { DashboardApi } from './dashboardApi';
-import { ApiService } from '../../service/apiService';
+import { DashboardApi } from './dashboardApi.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-const dashboardApi = new DashboardApi(apiService);
+const dashboardApi = new DashboardApi();
 
 router.get('/', async (req, res, next) => {
   try {

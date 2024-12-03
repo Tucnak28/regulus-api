@@ -1,11 +1,9 @@
 import express, { Router } from 'express';
-import { ApiService } from '../../service/apiService';
-import { RecirculationApi } from './recirculationApi';
+import { RecirculationApi } from './recirculationApi.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-export const recirculation = new RecirculationApi(apiService);
+export const recirculation = new RecirculationApi();
 
 router.get('/', async (req, res, next) => {
   try {

@@ -1,4 +1,4 @@
-import { recirculationResponseSchema } from './recirculationSchemas';
+import { recirculationResponseSchema } from './recirculationSchemas.js';
 
 export const recirculationPath = {
   '/recirculation': {

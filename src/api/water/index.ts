@@ -1,11 +1,9 @@
 import express, { Router } from 'express';
-import { ApiService } from '../../service/apiService';
-import { WaterApi } from './waterApi';
+import { WaterApi } from './waterApi.js';
 
 const router: Router = express.Router();
 
-const apiService = new ApiService();
-export const water = new WaterApi(apiService);
+export const water = new WaterApi();
 
 router.get('/', async (req, res, next) => {
   try {

@@ -1,4 +1,4 @@
-import { solarRequestBodySchema, solarResponseSchema } from './solarSchemas';
+import { solarRequestBodySchema, solarResponseSchema } from './solarSchemas.js';
 
 export const solarPath = {
   '/solar': {

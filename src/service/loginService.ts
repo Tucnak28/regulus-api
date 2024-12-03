@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios';
-import axiosInstance from '../config/axiosConfig';
-import { host } from '../config/config';
-import { parseAcerValue } from './xmlParserService';
-import { UnAuthorizedError } from '../exception/unAuthorizedError';
-import { IllegalStatusError } from '../exception/illegalStatusError';
+import axiosInstance from '../config/axiosConfig.js';
+import { host } from '../config/config.js';
+import { parseAcerValue } from './xmlParserService.js';
+import { UnAuthorizedError } from '../exception/unAuthorizedError.js';
+import { IllegalStatusError } from '../exception/illegalStatusError.js';
 
 interface LoginData {
   USER: string;
@@ -11,7 +11,6 @@ interface LoginData {
 }
 
 export class LoginService {
-
   private static URL = `${host}/login.xml`;
 
   public static async postLogin(): Promise<AxiosResponse> {
@@ -37,17 +36,13 @@ export class LoginService {
     let redirectUrl = response.headers.location || '';
     let count = 1;
     while (count < 10 && loginStatus === 302 && redirectUrl === '/LOGIN.XML') {
-      try {
-        let loginResponse = await this.postLogin();
-        loginStatus = loginResponse.status;
-        if (loginStatus === 200 && loginResponse.data) {
-          this.validateLoginStatus(loginResponse.data);
-        }
-        redirectUrl = loginResponse.headers.location || '/home.xml';
-        console.log('Logged in and redirect to ' + redirectUrl);
-      } catch (error) {
-        throw error;
+      const loginResponse = await this.postLogin();
+      loginStatus = loginResponse.status;
+      if (loginStatus === 200 && loginResponse.data) {
+        this.validateLoginStatus(loginResponse.data);
       }
+      redirectUrl = loginResponse.headers.location || '/home.xml';
+      console.log('Logged in and redirect to ' + redirectUrl);
       count++;
     }
     return redirectUrl;

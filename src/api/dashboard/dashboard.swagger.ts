@@ -1,4 +1,4 @@
-import { dashboardResponseSchema } from './dashboardSchemas';
+import { dashboardResponseSchema } from './dashboardSchemas.js';
 
 export const dashboardPath = {
   '/dashboard': {

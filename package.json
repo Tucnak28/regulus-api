@@ -1,16 +1,19 @@
 {
   "name": "regulus-api",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Regulus Rest API",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && npm run format && node ./dist/index.js",
     "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx}'",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -35,18 +38,25 @@
     "zod-openapi": "^4.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.15.0",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.14",
     "@types/node": "^18.13.0",
     "@types/supertest": "^6.0.2",
     "@types/swagger-ui-express": "^4.1.6",
     "@types/xml2js": "^0.4.14",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
+    "eslint": "^9.16.0",
+    "eslint-plugin-node": "^11.1.0",
+    "globals": "^15.12.0",
     "jest": "^29.7.0",
     "prettier": "^3.3.3",
     "supertest": "^7.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "tsc-watch": "^6.0.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "typescript-eslint": "^8.16.0"
   }
 }
