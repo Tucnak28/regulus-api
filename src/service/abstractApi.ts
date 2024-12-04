@@ -7,12 +7,8 @@ export abstract class AbstractApi<T> {
   abstract page: string;
 
   fetch(): Promise<T> {
-    return this.execute(() => this.fetchImpl(this.page));
-  }
-
-  fetchImpl(page: string): Promise<AxiosResponse> {
-    const apiUrl = `${host}${page}`;
-    return axiosInstance.get(apiUrl);
+    const apiUrl = `${host}${this.page}`;
+    return this.execute(() => axiosInstance.get(apiUrl));
   }
 
   async execute(operation: () => Promise<AxiosResponse>): Promise<T> {

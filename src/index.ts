@@ -20,7 +20,8 @@ import { AxiosError } from 'axios';
 const app: Express = express();
 
 app.use(express.json());
-app.use(express.static(path.join(process.cwd(), './dist/')));
+
+app.use(express.static(path.join(process.cwd(), '/')));
 
 app.use('/home', homeRouter);
 app.use('/heatPump', heatPumpRouter);

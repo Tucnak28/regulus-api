@@ -6,18 +6,17 @@ import { registryMapper } from '../mapper/registryMapper.js';
 
 export abstract class UpdateAbstractApi<U extends Record<string, unknown>, T> extends AbstractApi<T> {
   update(body: U): Promise<T> {
-    return this.execute(() => this.updateImpl(this.page, body));
-  }
-
-  updateImpl(page: string, body: U): Promise<AxiosResponse> {
-    const apiUrl = `${host}${page}`;
-    const bodyObj = this.objectToUrlSearchParams(body);
-    return axiosInstance.post(apiUrl, bodyObj, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+    return this.execute(() => {
+      const apiUrl = `${host}${this.page}`;
+      const bodyObj = this.objectToUrlSearchParams(body);
+      return axiosInstance.post(apiUrl, bodyObj, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
     });
   }
+
 
   private objectToUrlSearchParams(reqBody: U): URLSearchParams {
     const bodyObj = new URLSearchParams();
