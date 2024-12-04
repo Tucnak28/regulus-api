@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { AbstractApi } from './abstractApi.js';
 import axiosInstance from '../config/axiosConfig.js';
 import { host } from '../config/config.js';
