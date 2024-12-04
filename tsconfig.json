@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "removeComments": false
+    "removeComments": false,
   },
   "include": [
     "src/**/*",

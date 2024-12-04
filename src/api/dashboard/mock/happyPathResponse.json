@@ -1,0 +1,42 @@
+{
+    "outdoorTemperature": "2.6",
+    "rcTariff": "HIGH",
+    "holiday": "OFF",
+    "heatPump": {
+      "runningStatus": true,
+      "outletTemperature": "39.4",
+      "inletTemperature": "34.8"
+    },
+    "zone1": {
+      "status": true,
+      "actualTemperature": "22.4",
+      "requiredTemperature": "22.2",
+      "actualHeatingWaterTemperature": "28.5",
+      "requiredHeatingWaterTemperature": "29.2"
+    },
+    "zone2": {
+      "status": true,
+      "actualTemperature": "22.5",
+      "requiredTemperature": "22.7",
+      "actualHeatingWaterTemperature": "41.3",
+      "requiredHeatingWaterTemperature": "45.4"
+    },
+    "aku": {
+      "status": true,
+      "topTemperature": "43.3",
+      "bottomTemperature": "39.3",
+      "requiredTemperature": "45.4"
+    },
+    "water": {
+      "status": false,
+      "actualTemperature": "49.0",
+      "requiredTemperature": "42"
+    },
+    "solar": {
+      "status": false,
+      "panelTemperature": "8.1"
+    },
+    "circulation": {
+      "status": false
+    }
+}

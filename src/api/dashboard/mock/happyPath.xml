@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<?xml-stylesheet type="text/xsl" href="1_SCH.XSL?U=1690283176" version="1.0"?>
+<PAGE TITLE="                                  ">
+    <ACCESS PAGE_LEVEL="0" USER_LEVEL="0" UCID="1690283176" />
+    <INPUT NAME="__R15153_USINT_u" VALUE="1" />
+    <INPUT NAME="__R8275_REAL_.1f" VALUE="43.3" />
+    <INPUT NAME="__R8327_REAL_.1f" VALUE="49.0" />
+    <INPUT NAME="__R18395.0_BOOL_i" VALUE="1" />
+    <INPUT NAME="__R156298.0_BOOL_i" VALUE="1" />
+    <INPUT NAME="__R8505_INT_d" VALUE="42" />
+    <INPUT NAME="__R8417_REAL_.1f" VALUE="45.4" />
+    <INPUT NAME="__R8323_REAL_.1f" VALUE="28.5" />
+    <INPUT NAME="__R128148_REAL_.1f" VALUE="22.4" />
+    <INPUT NAME="__R8429_REAL_.1f" VALUE="29.2" />
+    <INPUT NAME="__R8453_REAL_.1f" VALUE="22.2" />
+    <INPUT NAME="__R10949.0_BOOL_i" VALUE="0" />
+    <INPUT NAME="__R15155_STRING[15]_s" VALUE="Podlahovka " />
+    <INPUT NAME="__R12018.4_BOOL_i" VALUE="0" />
+    <INPUT NAME="__R8319_REAL_.1f" VALUE="8.1" />
+    <INPUT NAME="__R8331_REAL_.1f" VALUE="41.3" />
+    <INPUT NAME="__R128170_REAL_.1f" VALUE="22.5" />
+    <INPUT NAME="__R8433_REAL_.1f" VALUE="45.4" />
+    <INPUT NAME="__R8457_REAL_.1f" VALUE="22.7" />
+    <INPUT NAME="__R18047_STRING[15]_s" VALUE="Radiatory " />
+    <INPUT NAME="__R12005.5_BOOL_i" VALUE="0" />
+    <INPUT NAME="__R11999_INT_-4.1d" VALUE="39.4" />
+    <INPUT NAME="__R11997_INT_-4.1d" VALUE="34.8" />
+    <INPUT NAME="__R12005.0_BOOL_i" VALUE="1" />
+    <INPUT NAME="__R8401_REAL_.1f" VALUE="39.3" />
+    <INPUT NAME="__R8405_REAL_.1f" VALUE="0.0" />
+    <INPUT NAME="__R8409_REAL_.1f" VALUE="0.0" />
+    <INPUT NAME="__R18045_USINT_u" VALUE="1" />
+    <INPUT NAME="__R8389_REAL_.1f" VALUE="39.3" />
+    <INPUT NAME="__R10949.2_BOOL_i" VALUE="0" />
+    <INPUT NAME="__R8266.1_BOOL_i" VALUE="0" />
+    <INPUT NAME="__R8267_REAL_.1f" VALUE="2.6" />
+</PAGE>
