@@ -11,9 +11,15 @@ router.get('/', async (req, res, next) => {
   const { fileName } = req.query;
   const apiUrl = `${host}/${fileName}`;
   try {
+    const validKeys = Object.keys(req.query).filter(key => key === 'fileName');
+    if (validKeys.length !== 1) {
+      throw new BadRequestError(`Only 'fileName' parameter is allowed`);
+    }
+
     if (!fileName) {
       throw new BadRequestError('File name is required');
     }
+
     if (!softPLCCookie) {
       const lResponse = await LoginService.postLogin();
       if (lResponse.status === 302 && lResponse.headers.location === '/LOGIN.XML') {
@@ -33,12 +39,12 @@ router.get('/', async (req, res, next) => {
     res.send(response.data);
   } catch (error) {
     if (error instanceof BadRequestError) {
-      res.status(error.statusCode).json(error.message);
+      res.status(error.statusCode).json(error);
     } else if (error instanceof AxiosError) {
       if (error.response?.status === 404) {
         error.message = 'File not found';
       }
-      res.status(error.response?.status || 400).json(error.message);
+      res.status(error.response?.status || 400).json({ message: error.message });
     } else {
       next(error);
     }

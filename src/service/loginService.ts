@@ -54,7 +54,7 @@ export class LoginService {
     if (acerValue === '1') {
       throw new UnAuthorizedError();
     } else {
-      throw new IllegalStatusError('Unspecific authorization error !!');
+      throw new IllegalStatusError();
     }
   }
 }

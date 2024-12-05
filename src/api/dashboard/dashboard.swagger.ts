@@ -14,6 +14,17 @@ export const dashboardPath = {
             },
           },
         },
+        409: {
+          description: 'This returns invalid response from host or invalid application mapping',
+          content: {
+            'application/json': {
+              schema: {
+                message: 'string',
+                minLength: 1
+              },
+            },
+          },
+        },
       },
     },
   },

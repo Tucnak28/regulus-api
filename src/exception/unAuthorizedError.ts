@@ -1,7 +1,10 @@
-export class UnAuthorizedError extends Error {
+import { AppError } from "./appError.js";
+
+export class UnAuthorizedError extends AppError {
   statusCode: number;
   constructor() {
-    super();
+    super('Unauthorized access !!');
     this.statusCode = 401;
+    Object.setPrototypeOf(this, UnAuthorizedError.prototype);
   }
 }

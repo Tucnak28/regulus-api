@@ -5,6 +5,7 @@ import { host } from '../../config/config';
 import path from 'path';
 import fs from 'fs';
 import happy from './mock/happyPathResponse.json';
+import { AppError } from '../../exception/appError';
 
 
 jest.mock('../../config/axiosConfig', () => {
@@ -31,5 +32,25 @@ describe('DashboardApi', () => {
 
     expect(result).toEqual(happy);
     expect(() => dashboardResponseSchema.parse(result)).not.toThrow();
+  });
+
+  it('should return error for invalid xml', async () => {
+    const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/missingField.xml'), 'utf-8');
+
+    (axiosInstance.get as jest.Mock).mockResolvedValueOnce({
+      data: mockXml,
+      status: 200,
+    });
+
+    const dashboardApi = new DashboardApi();
+    try {
+      await dashboardApi.fetch();
+    } catch (err) {
+      if (err instanceof AppError) {
+        expect(err.statusCode).toBe(409);
+        expect(err.message).toContain('is missing in xml response');
+      }
+    }
+    expect(axiosInstance.get).toHaveBeenCalledWith(`${host}/1_sch.xml`);
   });
 });

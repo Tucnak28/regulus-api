@@ -13,7 +13,7 @@ import path from 'path';
 import { port } from './config/config.js';
 import { UnAuthorizedError } from './exception/unAuthorizedError.js';
 import { IllegalStatusError } from './exception/illegalStatusError.js';
-import { UnknownApiTypeError } from './exception/unknownApiTypeError.js';
+import { ConflictError } from './exception/conflictError.js';
 import { ZodError } from 'zod';
 import { AxiosError } from 'axios';
 
@@ -40,17 +40,17 @@ app.get('/', (req, res) => {
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof SyntaxError && 'body' in err) {
-    res.status(400).json({ error: 'Invalid JSON format. Please check your request body.' });
+    res.status(400).json({ message: 'Invalid JSON format. Please check your request body.' });
   } else if (err instanceof AxiosError) {
-    res.status(400).send(err.message);
+    res.status(400).json({ message: err.message });
   } else if (err instanceof ZodError) {
-    res.status(400).send(err.message);
+    res.status(400).json({ message: err.message });
   } else if (err instanceof UnAuthorizedError) {
-    res.status(err.statusCode).send();
-  } else if (err instanceof UnknownApiTypeError) {
-    res.status(err.statusCode).json(err.message);
+    res.status(err.statusCode).json(err);
+  } else if (err instanceof ConflictError) {
+    res.status(err.statusCode).json(err);
   } else if (err instanceof IllegalStatusError) {
-    res.status(err.statusCode).json(err.message);
+    res.status(err.statusCode).json(err);
   } else {
     next(err);
   }

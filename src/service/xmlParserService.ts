@@ -1,5 +1,6 @@
 import { registryMapper } from '../mapper/registryMapper.js';
 import xml2js from 'xml2js';
+import { ConflictError } from '../exception/conflictError.js';
 
 interface Input {
   $?: {
@@ -77,14 +78,16 @@ async function parseXml<T>(operation: (parsed: ParsedXml) => Promise<T>, xml: st
 export function getValueFromMap(responseMap: Map<string, string>, field: string): string | undefined {
   const registryName = registryMapper.get(field);
   if (registryName === undefined) {
-    return console.log(`Property '${field}' is not assigned to any Regulus Registry name`), undefined;
+    console.log(`Application mapping is invalid. 
+      Property '${field}' is not assigned to any Regulus Registry name`);
+    throw new ConflictError(`Application mapping is invalid. ` + 
+      `Property '${field}' is not assigned to any Regulus Registry name.`);
   }
   const registryValue = responseMap.get(registryName);
   if (registryValue === undefined) {
-    return (
-      console.log(`Property '${field}' is assigned to registry '${registryName}', but is not found in response xml`),
-      undefined
-    );
+    console.log(`Property '${field}' is assigned to registry '${registryName}', but is not found in response xml`);
+    throw new ConflictError(`'${field}' could not be found. '${registryName}' is missing in xml response or ` + 
+      `'${field}' is mapped to another registry. Pls. contact Regulus provider.`);
   }
   return registryValue;
 }
