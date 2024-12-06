@@ -16,6 +16,9 @@ import { IllegalStatusError } from './exception/illegalStatusError.js';
 import { ConflictError } from './exception/conflictError.js';
 import { ZodError } from 'zod';
 import { AxiosError } from 'axios';
+import { AppError } from './exception/appError.js';
+import { BadRequestError } from './exception/badRequestError.js';
+import { CustomError } from './exception/customError.js';
 
 const app: Express = express();
 
@@ -39,24 +42,24 @@ app.get('/', (req, res) => {
 });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+  let customErr: AppError | undefined;
   if (err instanceof SyntaxError && 'body' in err) {
-    res.status(400).json({ message: 'Invalid JSON format. Please check your request body.' });
+    customErr = new BadRequestError('Invalid JSON format. Please check your request body.');
   } else if (err instanceof AxiosError) {
-    res.status(400).json({ message: err.message });
+    const code = err.response?.status || 400;
+    customErr = new CustomError(code, err.message);
   } else if (err instanceof ZodError) {
-    res.status(400).json({ message: err.message });
-  } else if (err instanceof UnAuthorizedError) {
-    res.status(err.statusCode).json(err);
-  } else if (err instanceof ConflictError) {
-    res.status(err.statusCode).json(err);
-  } else if (err instanceof IllegalStatusError) {
-    res.status(err.statusCode).json(err);
-  } else {
-    next(err);
+    customErr = new BadRequestError(err.message);
+  } else if (err instanceof UnAuthorizedError || err instanceof ConflictError || err instanceof IllegalStatusError) {
+    customErr = err;
   }
+  if (customErr) {
+    return res.status(customErr.statusCode).json(customErr);
+  }
+  next(err);
 });
 
-app.use((err: Error, req: Request, res: Response) => {
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error(err);
   res.status(500).json({ message: 'Unexpected error!' });
 });

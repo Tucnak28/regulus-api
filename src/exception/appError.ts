@@ -1,13 +1,12 @@
-// Abstract Base Error Class
 export abstract class AppError extends Error {
-    abstract statusCode: number;
+  abstract statusCode: number;
 
-    constructor(message: string) {
-        super(message);
-        Object.setPrototypeOf(this, AppError.prototype);
-    }
+  constructor(message: string) {
+    super(message);
+    Object.setPrototypeOf(this, AppError.prototype);
+  }
 
-    toJSON() {
-        return { message: this.message };
-    }
+  toJSON() {
+    return { message: this.message };
+  }
 }

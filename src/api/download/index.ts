@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
   const { fileName } = req.query;
   const apiUrl = `${host}/${fileName}`;
   try {
-    const validKeys = Object.keys(req.query).filter(key => key === 'fileName');
+    const validKeys = Object.keys(req.query).filter((key) => key === 'fileName');
     if (validKeys.length !== 1) {
       throw new BadRequestError(`Only 'fileName' parameter is allowed`);
     }

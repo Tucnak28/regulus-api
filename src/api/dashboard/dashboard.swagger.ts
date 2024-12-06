@@ -19,8 +19,13 @@ export const dashboardPath = {
           content: {
             'application/json': {
               schema: {
-                message: 'string',
-                minLength: 1
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                    minLength: 1,
+                  },
+                },
               },
             },
           },

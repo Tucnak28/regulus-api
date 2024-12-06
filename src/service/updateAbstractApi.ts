@@ -16,7 +16,6 @@ export abstract class UpdateAbstractApi<U extends Record<string, unknown>, T> ex
     });
   }
 
-
   private objectToUrlSearchParams(reqBody: U): URLSearchParams {
     const bodyObj = new URLSearchParams();
     for (const [key, value] of Object.entries(reqBody)) {

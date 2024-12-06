@@ -1,4 +1,4 @@
-import { AppError } from "./appError.js";
+import { AppError } from './appError.js';
 
 export class BadRequestError extends AppError {
   statusCode: number;

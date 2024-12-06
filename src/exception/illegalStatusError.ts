@@ -5,5 +5,4 @@ export class IllegalStatusError extends BadRequestError {
     super('Unspecific authorization error !!');
     Object.setPrototypeOf(this, IllegalStatusError.prototype);
   }
-  
 }

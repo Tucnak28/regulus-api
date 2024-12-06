@@ -1,4 +1,4 @@
-import { AppError } from "./appError.js";
+import { AppError } from './appError.js';
 
 export class UnAuthorizedError extends AppError {
   statusCode: number;

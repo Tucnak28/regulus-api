@@ -80,14 +80,17 @@ export function getValueFromMap(responseMap: Map<string, string>, field: string)
   if (registryName === undefined) {
     console.log(`Application mapping is invalid. 
       Property '${field}' is not assigned to any Regulus Registry name`);
-    throw new ConflictError(`Application mapping is invalid. ` + 
-      `Property '${field}' is not assigned to any Regulus Registry name.`);
+    throw new ConflictError(
+      `Application mapping is invalid. ` + `Property '${field}' is not assigned to any Regulus Registry name.`,
+    );
   }
   const registryValue = responseMap.get(registryName);
   if (registryValue === undefined) {
     console.log(`Property '${field}' is assigned to registry '${registryName}', but is not found in response xml`);
-    throw new ConflictError(`'${field}' could not be found. '${registryName}' is missing in xml response or ` + 
-      `'${field}' is mapped to another registry. Pls. contact Regulus provider.`);
+    throw new ConflictError(
+      `'${field}' could not be found. '${registryName}' is missing in xml response or ` +
+        `'${field}' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   }
   return registryValue;
 }

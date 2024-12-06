@@ -7,7 +7,6 @@ import fs from 'fs';
 import happy from './mock/happyPathResponse.json';
 import { AppError } from '../../exception/appError';
 
-
 jest.mock('../../config/axiosConfig', () => {
   const actualAxiosConfig = jest.requireActual('../../config/axiosConfig');
   return {
