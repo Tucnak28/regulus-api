@@ -1,0 +1,4 @@
+10.10.2022 16:49:45 -Cold Rst- FW: IR14CTC v1.0.6.0
+10.10.2022 16:49:45 Informace TC1: iPWM zapnuto
+10.10.2022 16:49:45 �idlo:venkovn�
+10.10.2022 16:49:45 �idlo:z�na 1

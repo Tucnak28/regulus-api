@@ -1,40 +1,28 @@
 import express, { Router } from 'express';
 import { AxiosError } from 'axios';
 import { host } from '../../config/config.js';
-import axiosInstance, { softPLCCookie } from '../../config/axiosConfig.js';
 import { BadRequestError } from '../../exception/badRequestError.js';
-import { LoginService } from '../../service/loginService.js';
+import { DownloadApi } from './downloadApi.js';
 
 const router: Router = express.Router();
+const downloadApi = new DownloadApi();
 
 router.get('/', async (req, res, next) => {
   const { fileName } = req.query;
   const apiUrl = `${host}/${fileName}`;
   try {
-    const validKeys = Object.keys(req.query).filter((key) => key === 'fileName');
-    if (validKeys.length !== 1) {
-      throw new BadRequestError(`Only 'fileName' parameter is allowed`);
-    }
-
-    if (!fileName) {
+    const validKeys = Object.keys(req.query);
+    if (validKeys.filter((key) => key === 'fileName').length === 0) {
       throw new BadRequestError('File name is required');
     }
 
-    if (!softPLCCookie) {
-      const lResponse = await LoginService.postLogin();
-      if (lResponse.status === 302 && lResponse.headers.location === '/LOGIN.XML') {
-        LoginService.successLogin(lResponse);
-      }
+    if (validKeys.length > 1) {
+      throw new BadRequestError(`Only 'fileName' parameter is allowed`);
     }
 
-    const response = await axiosInstance.get(apiUrl, {
-      headers: {
-        'Content-Type': 'binary-bin',
-      },
-      responseType: 'arraybuffer',
-    });
+    const response = await downloadApi.fetchFile(apiUrl);
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', 'attachment; filename="statLog.csv"');
+    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
 
     res.send(response.data);
   } catch (error) {

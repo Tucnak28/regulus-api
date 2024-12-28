@@ -13,6 +13,10 @@ interface LoginData {
 export class LoginService {
   private static URL = `${host}/login.xml`;
 
+  public static async getLogin(): Promise<AxiosResponse> {
+    return await axiosInstance.get(this.URL);
+  }
+
   public static async postLogin(): Promise<AxiosResponse> {
     const user = process.env.USER;
     const password = process.env.PASSWORD;
