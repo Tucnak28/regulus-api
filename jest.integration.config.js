@@ -6,9 +6,8 @@ const config = {
   },
   testPathIgnorePatterns: ['/node_modules/', '/dist/'],
   testMatch: [
-    "**/api/**/*.test.ts",
+    "<rootDir>/src/tests/*.test.ts",
   ],
-
 };
 
 export default config;

@@ -1,0 +1,30 @@
+{
+  "panelTemperature": "9.2",
+  "runningStatus": false,
+  "power": "0",
+  "consumer1": {
+    "serviceEnabled": true,
+    "state": true,
+    "heating": false,
+    "coolingTemperature": "44.3",
+    "maximumTemperature": "80",
+    "requiredTemperature": "60"
+  },
+  "consumer2": {
+    "serviceEnabled": false,
+    "state": false,
+    "heating": false,
+    "coolingTemperature": "0.0",
+    "maximumTemperature": "85",
+    "requiredTemperature": "55"
+  },
+  "consumer3": {
+    "serviceEnabled": false,
+    "state": false,
+    "heating": false,
+    "coolingTemperature": "0.0",
+    "maximumTemperature": "80",
+    "requiredTemperature": "40"
+  },
+  "pumpStatus": "stand-by"
+}
