@@ -27,10 +27,6 @@ export class LoginService {
     return response;
   }
 
-  public static async getLogin(): Promise<AxiosResponse> {
-    return await axiosInstance.post(this.URL);
-  }
-
   public static async successLogin(response: AxiosResponse): Promise<string> {
     let loginStatus = response.status;
     let redirectUrl = response.headers.location || '';
@@ -39,7 +35,7 @@ export class LoginService {
       const loginResponse = await this.postLogin();
       loginStatus = loginResponse.status;
       if (loginStatus === 200 && loginResponse.data) {
-        this.validateLoginStatus(loginResponse.data);
+        await this.validateLoginStatus(loginResponse.data);
       }
       redirectUrl = loginResponse.headers.location || '/home.xml';
       console.log('Logged in and redirect to ' + redirectUrl);

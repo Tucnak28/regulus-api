@@ -23,7 +23,6 @@ import { CustomError } from './exception/customError.js';
 const app: Express = express();
 
 app.use(express.json());
-
 app.use(express.static(path.join(process.cwd(), '/')));
 
 app.use('/home', homeRouter);

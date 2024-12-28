@@ -56,7 +56,7 @@ async function getAcerValue(parsed: ParsedXml): Promise<string> {
 
 async function parseXml<T>(operation: (parsed: ParsedXml) => Promise<T>, xml: string): Promise<T> {
   return new Promise<T>((resolve, reject) => {
-    const parser = new xml2js.Parser();
+    const parser = new xml2js.Parser({ explicitArray: false });
     parser.parseString(xml, async (err, result) => {
       if (err) {
         console.error('Error parsing XML:', err);

@@ -12,13 +12,16 @@ export abstract class AbstractApi<T> {
   }
 
   async execute(operation: () => Promise<AxiosResponse>): Promise<T> {
-    const response = await operation();
-    if (response.status === 200) {
-      return this.getResponse(response.data);
+    let response: AxiosResponse;
+
+    while (true) {
+      response = await operation();
+      if (response.status === 200) {
+        return this.getResponse(response.data);
+      }
+      console.log('Redirect detected, re-authenticating...');
+      await LoginService.successLogin(response);
     }
-    console.log('Redirect detected, re-authenticating...');
-    LoginService.successLogin(response);
-    return this.fetch();
   }
 
   abstract getResponse(data: string): Promise<T>;
