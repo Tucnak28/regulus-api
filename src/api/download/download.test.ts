@@ -47,7 +47,7 @@ describe('Download', () => {
         },
         config: {},
         request: {},
-      }
+      },
     );
 
     jest.spyOn(DownloadApi.prototype, 'fetchFile').mockRejectedValueOnce(axiosError);

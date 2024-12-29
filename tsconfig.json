@@ -15,10 +15,6 @@
     "resolveJsonModule": true,
     "removeComments": false,
   },
-  "include": [
-    "src/**/*",
-    "src/**/*.json",
-  ],
   "exclude": [
     "**/*.test.ts"
   ],

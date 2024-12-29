@@ -1,9 +1,11 @@
 # src
 src
 node_modules
+images
 .github
 .env
 .gitignore
 *.tgz
 tsconfig.json
 jest.config.ts
+jest.integration.config.ts
