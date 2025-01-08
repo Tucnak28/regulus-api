@@ -37,6 +37,5 @@ export class HeatPumpApi extends AbstractApi<HeatPumpResponseData> {
         yesterdayStarts: getValueFromMap(schemaXmlMap, 'hotWaterYesterdayStarts', registryErrors),
       },
     };
-
   }
 }

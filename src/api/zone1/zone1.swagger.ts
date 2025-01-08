@@ -14,6 +14,22 @@ export const zone1Path = {
             },
           },
         },
+        409: {
+          description: 'This returns invalid response from host or invalid application mapping',
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                properties: {
+                  message: {
+                    type: 'string',
+                    minLength: 1,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     },
     patch: {

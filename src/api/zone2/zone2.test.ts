@@ -39,7 +39,7 @@ describe('WaterApi', () => {
 
   app = express();
   app.use('/zone2', router);
-  
+
   it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/zone2MissingField.xml'), 'utf-8');
 
@@ -50,10 +50,11 @@ describe('WaterApi', () => {
 
     const res = await request(app).get('/zone2');
     expect(res.status).toBe(409);
-    
+
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
-      `'zone2ServiceEnabled' could not be found. '__R18006.0_BOOL_i' is missing in xml response or 'zone2ServiceEnabled' is mapped to another registry. Pls. contact Regulus provider.|` + 
-      `'zone2HumidityState' could not be found. '__R112275.7_BOOL_i' is missing in xml response or 'zone2HumidityState' is mapped to another registry. Pls. contact Regulus provider.`);
+      `'zone2ServiceEnabled' could not be found. '__R18006.0_BOOL_i' is missing in xml response or 'zone2ServiceEnabled' is mapped to another registry. Pls. contact Regulus provider.|` +
+        `'zone2HumidityState' could not be found. '__R112275.7_BOOL_i' is missing in xml response or 'zone2HumidityState' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
 });

@@ -39,7 +39,7 @@ describe('WaterApi', () => {
 
   app = express();
   app.use('/water', router);
-  
+
   it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/waterMissingField.xml'), 'utf-8');
 
@@ -50,10 +50,11 @@ describe('WaterApi', () => {
 
     const res = await request(app).get('/water');
     expect(res.status).toBe(409);
-    
+
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
       `'waterState' could not be found. '__R22589.0_BOOL_i' is missing in xml response or 'waterState' is mapped to another registry. Pls. contact Regulus provider.|` +
-      `'waterRequiredTemperature' could not be found. '__R8505_INT_d' is missing in xml response or 'waterRequiredTemperature' is mapped to another registry. Pls. contact Regulus provider.`);
+        `'waterRequiredTemperature' could not be found. '__R8505_INT_d' is missing in xml response or 'waterRequiredTemperature' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
 });

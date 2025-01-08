@@ -34,12 +34,12 @@ describe('RecirculationApi', () => {
     expect(result).toEqual(happy);
     expect(() => recirculationResponseSchema.parse(result)).not.toThrow();
   });
-  
+
   let app: express.Application;
 
   app = express();
   app.use('/recirculation', router);
-  
+
   it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/recirculationMissingField.xml'), 'utf-8');
 
@@ -50,9 +50,10 @@ describe('RecirculationApi', () => {
 
     const res = await request(app).get('/recirculation');
     expect(res.status).toBe(409);
-    
+
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
-      `'recirculationServiceEnabled' could not be found. '__R18395.0_BOOL_i' is missing in xml response or 'recirculationServiceEnabled' is mapped to another registry. Pls. contact Regulus provider.`);
+      `'recirculationServiceEnabled' could not be found. '__R18395.0_BOOL_i' is missing in xml response or 'recirculationServiceEnabled' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
 });

@@ -15,8 +15,13 @@ export class Zone1Api extends UpdateAbstractApi<Zone1RequestData, Zone1ResponseD
       temperature: getValueFromMap(schemaXmlMap, 'zone1Temperature', registryErrors),
       requiredTemperature: getValueFromMap(schemaXmlMap, 'zone1RequiredTemperature', registryErrors),
       heatingWaterTemperature: getValueFromMap(schemaXmlMap, 'zone1HeatingWaterTemperature', registryErrors),
-      requiredHeatingWaterTemperature: getValueFromMap(schemaXmlMap, 'zone1RequiredHeatingWaterTemperature', registryErrors),
-      winterSummerModeByDateState: getValueFromMap(schemaXmlMap, 'zone1WinterSummerModeByDateState', registryErrors) === '1',
+      requiredHeatingWaterTemperature: getValueFromMap(
+        schemaXmlMap,
+        'zone1RequiredHeatingWaterTemperature',
+        registryErrors,
+      ),
+      winterSummerModeByDateState:
+        getValueFromMap(schemaXmlMap, 'zone1WinterSummerModeByDateState', registryErrors) === '1',
       winterSummerModeByTemperatureState:
         getValueFromMap(schemaXmlMap, 'zone1WinterSummerModeByTemperatureState', registryErrors) === '1',
       humidityState: getValueFromMap(schemaXmlMap, 'zone1HumidityState', registryErrors),

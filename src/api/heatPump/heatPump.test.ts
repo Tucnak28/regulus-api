@@ -39,7 +39,7 @@ describe('HeatPumpApi', () => {
 
   app = express();
   app.use('/heatPump', router);
-  
+
   it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/heatPumpMissingField.xml'), 'utf-8');
 
@@ -50,10 +50,11 @@ describe('HeatPumpApi', () => {
 
     const res = await request(app).get('/heatPump');
     expect(res.status).toBe(409);
-    
+
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
       `'overallTotalHours' could not be found. '__R26610_UDINT_u' is missing in xml response or 'overallTotalHours' is mapped to another registry. Pls. contact Regulus provider.|` +
-      `'overallTotalStarts' could not be found. '__R26620_UINT_u' is missing in xml response or 'overallTotalStarts' is mapped to another registry. Pls. contact Regulus provider.`);
+        `'overallTotalStarts' could not be found. '__R26620_UINT_u' is missing in xml response or 'overallTotalStarts' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
 });

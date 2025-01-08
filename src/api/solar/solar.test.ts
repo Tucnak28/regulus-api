@@ -46,7 +46,7 @@ describe('SolarApi', () => {
 
   app = express();
   app.use('/solar', router);
-  
+
   it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/solarMissingField.xml'), 'utf-8');
 
@@ -57,10 +57,11 @@ describe('SolarApi', () => {
 
     const res = await request(app).get('/solar');
     expect(res.status).toBe(409);
-    
+
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
-      `'solarPumpStatus' could not be found. '__R17775_STRING[20]_s' is missing in xml response or 'solarPumpStatus' is mapped to another registry. Pls. contact Regulus provider.`);
+      `'solarPumpStatus' could not be found. '__R17775_STRING[20]_s' is missing in xml response or 'solarPumpStatus' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
 
   it('should update successfully', async () => {

@@ -92,7 +92,7 @@ export function getValueFromMap(
   if (registryValue === undefined) {
     registryError.push(
       `'${registryKey}' could not be found. '${registryName}' is missing in xml response or ` +
-      `'${registryKey}' is mapped to another registry. Pls. contact Regulus provider.`,
+        `'${registryKey}' is mapped to another registry. Pls. contact Regulus provider.`,
     );
     console.log(
       `Property '${registryKey}' is assigned to registry '${registryName}', but is not found in response xml`,

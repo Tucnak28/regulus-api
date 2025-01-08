@@ -39,7 +39,7 @@ describe('WaterApi', () => {
 
   app = express();
   app.use('/zone1', router);
-  
+
   it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/zone1MissingField.xml'), 'utf-8');
 
@@ -50,10 +50,11 @@ describe('WaterApi', () => {
 
     const res = await request(app).get('/zone1');
     expect(res.status).toBe(409);
-    
+
     expect(res.body).toHaveProperty('message');
     expect(res.body.message).toEqual(
-      `'zone1Status' could not be found. '__R15458_STRING[20]_s' is missing in xml response or 'zone1Status' is mapped to another registry. Pls. contact Regulus provider.|` + 
-      `'zone1WinterSummerModeByTemperatureState' could not be found. '__R15186.0_BOOL_i' is missing in xml response or 'zone1WinterSummerModeByTemperatureState' is mapped to another registry. Pls. contact Regulus provider.`);
+      `'zone1Status' could not be found. '__R15458_STRING[20]_s' is missing in xml response or 'zone1Status' is mapped to another registry. Pls. contact Regulus provider.|` +
+        `'zone1WinterSummerModeByTemperatureState' could not be found. '__R15186.0_BOOL_i' is missing in xml response or 'zone1WinterSummerModeByTemperatureState' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
 });

@@ -38,7 +38,7 @@ describe('DashboardApi', () => {
   let app: express.Application;
 
   app = express();
-  app.use(express.json()); 
+  app.use(express.json());
   app.use('/dashboard', router);
 
   it('should return 409 if registry mapping failed', async () => {
@@ -52,8 +52,9 @@ describe('DashboardApi', () => {
     const res = await request(app).get('/dashboard');
     expect(res.status).toBe(409);
     expect(res.body).toHaveProperty('message');
-    expect(res.body.message).toEqual(`'akuRequiredTemperature' could not be found. '__R8417_REAL_.1f' is missing in xml response or ` + 
-      `'akuRequiredTemperature' is mapped to another registry. Pls. contact Regulus provider.`);
+    expect(res.body.message).toEqual(
+      `'akuRequiredTemperature' could not be found. '__R8417_REAL_.1f' is missing in xml response or ` +
+        `'akuRequiredTemperature' is mapped to another registry. Pls. contact Regulus provider.`,
+    );
   });
-
 });
