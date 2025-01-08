@@ -9,12 +9,8 @@ import { AxiosError } from 'axios';
 describe('Download', () => {
   let app: express.Application;
 
-  beforeEach(() => {
-    // jest.clearAllMocks(); // Reset mocks for each test
-
-    app = express();
-    app.use('/download', router);
-  });
+  app = express();
+  app.use('/download', router);
 
   it('should return 400 if fileName is not provided', async () => {
     const res = await request(app).get('/download');

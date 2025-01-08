@@ -1,0 +1,30 @@
+{
+  "serviceEnabled": true,
+  "status": "připraven topit",
+  "compressor": "STOPPED",
+  "outletTemperature": "50.2",
+  "inletTemperature": "49.5",
+  "runningStatus": false,
+  "runningTime": "00:00:00",
+  "idleTime": "00:11:13",
+  "overallStatistics": {
+      "totalHours": "3592",
+      "totalStarts": "6840",
+      "todayHours": "3",
+      "todayMinutes": "4",
+      "todayStarts": "4",
+      "yesterdayHours": "11",
+      "yesterdayMinutes": "18",
+      "yesterdayStarts": "14"
+  },
+  "hotWaterStatistics": {
+      "totalHours": "199",
+      "totalStarts": "825",
+      "todayHours": "0",
+      "todayMinutes": "0",
+      "todayStarts": "0",
+      "yesterdayHours": "0",
+      "yesterdayMinutes": "18",
+      "yesterdayStarts": "0"
+  }
+}

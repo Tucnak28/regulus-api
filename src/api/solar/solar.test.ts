@@ -1,3 +1,6 @@
+import express from 'express';
+import request from 'supertest';
+import router from './index';
 import axiosInstance from '../../config/axiosConfig';
 import { host } from '../../config/config';
 import path from 'path';
@@ -22,12 +25,8 @@ const mockedPostLogin = jest.fn();
 (LoginService as { postLogin: () => Promise<AxiosResponse> }).postLogin = mockedPostLogin;
 
 describe('SolarApi', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should handle the XML response correctly', async () => {
-    const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/happyPath.xml'), 'utf-8');
+    const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/solarHappyPath.xml'), 'utf-8');
 
     (axiosInstance.get as jest.Mock).mockResolvedValueOnce({
       data: mockXml,
@@ -43,8 +42,29 @@ describe('SolarApi', () => {
     expect(() => solarResponseSchema.parse(result)).not.toThrow();
   });
 
+  let app: express.Application;
+
+  app = express();
+  app.use('/solar', router);
+  
+  it('should return 409 if registry mapping failed', async () => {
+    const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/solarMissingField.xml'), 'utf-8');
+
+    (axiosInstance.get as jest.Mock).mockResolvedValueOnce({
+      data: mockXml,
+      status: 200,
+    });
+
+    const res = await request(app).get('/solar');
+    expect(res.status).toBe(409);
+    
+    expect(res.body).toHaveProperty('message');
+    expect(res.body.message).toEqual(
+      `'solarPumpStatus' could not be found. '__R17775_STRING[20]_s' is missing in xml response or 'solarPumpStatus' is mapped to another registry. Pls. contact Regulus provider.`);
+  });
+
   it('should update successfully', async () => {
-    const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/happyPath.xml'), 'utf-8');
+    const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/solarHappyPath.xml'), 'utf-8');
 
     (axiosInstance.post as jest.Mock).mockResolvedValueOnce({
       data: mockXml,

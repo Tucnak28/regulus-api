@@ -1,0 +1,14 @@
+{
+  "name": "TEPLÁ VODA",
+  "serviceEnabled": true,
+  "state": true,
+  "status": "ON-SETBACK",
+  "switchingSensorTemperature": "54.0",
+  "comfortTemperature": "47",
+  "setbackTemperature": "42",
+  "requiredTemperature": "42",
+  "thermalStoreStatus": false,
+  "thermalStoreTemperature": "65",
+  "useTimeProgramState": true,
+  "useSecondPeriodState": false
+}

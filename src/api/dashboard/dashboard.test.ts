@@ -1,3 +1,6 @@
+import express from 'express';
+import request from 'supertest';
+import router from './index';
 import { DashboardApi } from './dashboardApi';
 import { dashboardResponseSchema } from './dashboardSchemas';
 import axiosInstance from '../../config/axiosConfig';
@@ -5,7 +8,6 @@ import { host } from '../../config/config';
 import path from 'path';
 import fs from 'fs';
 import happy from './mock/happyPathResponse.json';
-import { AppError } from '../../exception/appError';
 
 jest.mock('../../config/axiosConfig', () => {
   const actualAxiosConfig = jest.requireActual('../../config/axiosConfig');
@@ -33,7 +35,13 @@ describe('DashboardApi', () => {
     expect(() => dashboardResponseSchema.parse(result)).not.toThrow();
   });
 
-  it('should return error for invalid xml', async () => {
+  let app: express.Application;
+
+  app = express();
+  app.use(express.json()); 
+  app.use('/dashboard', router);
+
+  it('should return 409 if registry mapping failed', async () => {
     const mockXml = fs.readFileSync(path.resolve(__dirname, './mock/missingField.xml'), 'utf-8');
 
     (axiosInstance.get as jest.Mock).mockResolvedValueOnce({
@@ -41,15 +49,11 @@ describe('DashboardApi', () => {
       status: 200,
     });
 
-    const dashboardApi = new DashboardApi();
-    try {
-      await dashboardApi.fetch();
-    } catch (err) {
-      if (err instanceof AppError) {
-        expect(err.statusCode).toBe(409);
-        expect(err.message).toContain('is missing in xml response');
-      }
-    }
-    expect(axiosInstance.get).toHaveBeenCalledWith(`${host}/1_sch.xml`);
+    const res = await request(app).get('/dashboard');
+    expect(res.status).toBe(409);
+    expect(res.body).toHaveProperty('message');
+    expect(res.body.message).toEqual(`'akuRequiredTemperature' could not be found. '__R8417_REAL_.1f' is missing in xml response or ` + 
+      `'akuRequiredTemperature' is mapped to another registry. Pls. contact Regulus provider.`);
   });
+
 });

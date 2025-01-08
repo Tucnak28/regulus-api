@@ -1,0 +1,14 @@
+{
+  "name": "Podlahovka ",
+  "serviceEnabled": true,
+  "status": "TOPÍ",
+  "statusReason": "KOMFORTNÍ TEPLOTA TRVALE",
+  "temperature": "23.5",
+  "requiredTemperature": "22.2",
+  "heatingWaterTemperature": "24.7",
+  "requiredHeatingWaterTemperature": "24.1",
+  "winterSummerModeByDateState": true,
+  "winterSummerModeByTemperatureState": true,
+  "humidityState": "0",
+  "humidity": "0.0"
+}

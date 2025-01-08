@@ -13,7 +13,6 @@ import path from 'path';
 import { port } from './config/config.js';
 import { UnAuthorizedError } from './exception/unAuthorizedError.js';
 import { IllegalStatusError } from './exception/illegalStatusError.js';
-import { ConflictError } from './exception/conflictError.js';
 import { ZodError } from 'zod';
 import { AxiosError } from 'axios';
 import { AppError } from './exception/appError.js';
@@ -49,13 +48,14 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     customErr = new CustomError(code, err.message);
   } else if (err instanceof ZodError) {
     customErr = new BadRequestError(err.message);
-  } else if (err instanceof UnAuthorizedError || err instanceof ConflictError || err instanceof IllegalStatusError) {
+  } else if (err instanceof UnAuthorizedError || err instanceof IllegalStatusError) {
     customErr = err;
   }
   if (customErr) {
     return res.status(customErr.statusCode).json(customErr);
+  } else {
+    next(err);
   }
-  next(err);
 });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

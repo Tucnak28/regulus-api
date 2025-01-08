@@ -1,0 +1,10 @@
+{
+  "serviceEnabled": true,
+  "state": true,
+  "period": "10",
+  "delay": "20",
+  "immediatePeriod": "10",
+  "immediateState": false,
+  "useTimeProgramState": true,
+  "useSecondPeriodState": true
+}

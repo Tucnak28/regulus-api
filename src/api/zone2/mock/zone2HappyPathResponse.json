@@ -1,0 +1,14 @@
+{
+  "name": "Radiatory ",
+  "serviceEnabled": true,
+  "status": "BLOKOVANÁ",
+  "statusReason": "DOSAŽENA POKOJOVÁ TEPLOTA",
+  "temperature": "21.2",
+  "requiredTemperature": "22.7",
+  "heatingWaterTemperature": "53.1",
+  "requiredHeatingWaterTemperature": "49.5",
+  "winterSummerModeByDateState": false,
+  "winterSummerModeByTemperatureState": true,
+  "humidityState": "0",
+  "humidity": "0.0"
+}

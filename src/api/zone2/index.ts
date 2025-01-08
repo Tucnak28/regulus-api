@@ -1,6 +1,7 @@
 import express, { Router } from 'express';
 import { Zone2Api } from './zone2Api.js';
 import { zone2RequestBodySchema } from './zone2Schemas.js';
+import { ConflictError } from '../../exception/conflictError.js';
 
 const router: Router = express.Router();
 
@@ -11,7 +12,11 @@ router.get('/', async (req, res, next) => {
     const data = await zone2.fetch();
     res.status(200).json(data);
   } catch (error) {
-    next(error);
+    if (error instanceof ConflictError) {
+      return res.status(error.statusCode).json(error);
+    } else {
+      next(error);
+    }
   }
 });
 
