@@ -6,12 +6,7 @@ const router: Router = express.Router();
 const homeApi = new HomeApi();
 
 router.get('/', async (req, res, next) => {
-  try {
-    const data = await homeApi.fetch();
-    res.status(200).json(data);
-  } catch (error) {
-    next(error);
-  }
+  await homeApi.routeFetch(res, next);
 });
 
 export default router;

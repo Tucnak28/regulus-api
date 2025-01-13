@@ -4,9 +4,23 @@ import { host } from '../config/config.js';
 import axiosInstance from '../config/axiosConfig.js';
 import { parseXmlToMap } from './xmlParserService.js';
 import { ConflictError } from '../exception/conflictError.js';
+import { Response, NextFunction } from 'express';
 
 export abstract class AbstractApi<T> {
   abstract page: string;
+
+  async routeFetch(res: Response, next: NextFunction) {
+    try {
+      const data = await this.fetch();
+      res.status(200).json(data);
+    } catch (error) {
+      if (error instanceof ConflictError) {
+        return res.status(error.statusCode).json({ message: error.message });
+      } else {
+        next(error);
+      }
+    }
+  }
 
   fetch(): Promise<T> {
     const apiUrl = `${host}${this.page}`;
