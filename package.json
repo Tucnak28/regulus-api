@@ -13,6 +13,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && npm run format && node ./dist/index.js",
+    "log": "node ./scripts/HeatPumpLogger.js",
     "dev": "npm run lint && tsc-watch --onSuccess \"node ./dist/index.js\"",
     "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx}'",
     "test:unit": "jest --config=jest.config.js",

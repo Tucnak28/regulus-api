@@ -23,9 +23,10 @@ export const heatPumpResponseSchema = z
     inletTemperature: z.string().optional(),
     runningStatus: z.boolean().optional(),
     runningTime: z.string().optional(),
+    rps: z.string().optional(),
     idleTime: z.string().optional(),
-    overallStatistics: statisticsSchema,
-    hotWaterStatistics: statisticsSchema,
+    //overallStatistics: statisticsSchema,
+    //hotWaterStatistics: statisticsSchema,
   })
   .strict()
   .openapi({

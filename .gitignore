@@ -15,3 +15,5 @@ node_modules/
 
 # Nuxt.js build / generate output
 dist/
+package-lock.json
+scripts/temperature_log.csv
