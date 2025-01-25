@@ -6,6 +6,7 @@ import { dashboardPath } from '../api/dashboard/dashboard.swagger.js';
 import { heatPumpPath } from '../api/heatPump/heatPump.swagger.js';
 import { solarPath } from '../api/solar/solar.swagger.js';
 import { homePath } from '../api/home/home.swagger.js';
+import { customPath } from '../api/custom/custom.swagger.js';
 import { zone2Path } from '../api/zone2/zone2.swagger.js';
 import { waterPath } from '../api/water/water.swagger.js';
 import { recirculationPath } from '../api/recirculation/recirculation.swagger.js';
@@ -33,6 +34,7 @@ const wholeApiDocument = createDocument({
     ...waterPath,
     ...recirculationPath,
     ...downloadPath,
+    ...customPath,
   },
 });
 

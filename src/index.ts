@@ -9,6 +9,7 @@ import solarRouter from './api/solar/index.js';
 import waterRouter from './api/water/index.js';
 import recirculationRouter from './api/recirculation/index.js';
 import downloadRouter from './api/download/index.js';
+import customRouter from './api/custom/index.js';
 import path from 'path';
 import { port } from './config/config.js';
 import { UnAuthorizedError } from './exception/unAuthorizedError.js';
@@ -33,6 +34,7 @@ app.use('/solar', solarRouter);
 app.use('/water', waterRouter);
 app.use('/recirculation', recirculationRouter);
 app.use('/download', downloadRouter);
+app.use('/custom', customRouter);
 app.use(swaggerRouter);
 
 app.get('/', (req, res) => {

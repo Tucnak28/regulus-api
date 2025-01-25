@@ -12,7 +12,7 @@ export abstract class AbstractApi<T> {
   async routeFetch(res: Response, next: NextFunction) {
     try {
       const data = await this.fetch();
-      res.status(200).json(data);
+      return data;
     } catch (error) {
       if (error instanceof ConflictError) {
         return res.status(error.statusCode).json({ message: error.message });
