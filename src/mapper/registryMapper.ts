@@ -75,10 +75,10 @@ export const registryMapper = new Map<string, string>([
   ['waterStatusOff', '__R10018.1_BOOL_i'],
   ['waterStatusOnSetback', '__R10018.2_BOOL_i'],
   ['waterStatusOnComfort', '__R10018.3_BOOL_i'],
-  ['waterSwitchingSensorTemperature', '__R8327_REAL_.1f'],
+  ['waterSwitchingSensorTemperature', '__T29E0FB9B_REAL_.1f'], //
   ['waterComfortTemperature', '__R22600_REAL_.0f'],
   ['waterSetbackTemperature', '__R22604_REAL_.0f'],
-  ['waterRequiredTemperature', '__R8505_INT_d'],
+  ['waterRequiredTemperature', '__T8C9AFCC2_INT_d'], //
   ['waterThermalStoreStatus', '__R22462.0_BOOL_i'],
   ['waterThermalStoreTemperature', '__R22451_USINT_u'],
   ['waterUseTimeProgramState', '__R22662.0_BOOL_i'],
