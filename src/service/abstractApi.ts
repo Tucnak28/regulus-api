@@ -15,9 +15,9 @@ export abstract class AbstractApi<T> {
       return data;
     } catch (error) {
       if (error instanceof ConflictError) {
-        return res.status(error.statusCode).json({ message: error.message });
+        throw new ConflictError(error.message);
       } else {
-        next(error);
+        throw error;
       }
     }
   }
