@@ -1,6 +1,6 @@
 export const registryMapper = new Map<string, string>([
   //general
-  ['outdoorTemperature', '__R8267_REAL_.1f'],
+  ['outdoorTemperature', '__TD9939790_REAL_.1f'],
   ['rcTariff', '__R10949.2_BOOL_i'], //0 =high, 1 = low
   ['holiday', '__R8266.1_BOOL_i'], //0 = off, 1 = on
   ['heatPumpRunningStatus', '__R12005.0_BOOL_i'],
@@ -34,13 +34,13 @@ export const registryMapper = new Map<string, string>([
   ['hotWaterYesterdayMinutes', '__R26608_UINT_u'],
   ['hotWaterYesterdayStarts', '__R26627_USINT_u'],
   //zone1
-  ['zone1Name', '__R15155_STRING[15]_s'],
+  ['zone1Name', '__T4D45E37E_STRING[15]_s'],
   ['zone1ServiceEnabled', '__R15114.0_BOOL_i'],
   ['zone1Status', '__R15458_STRING[20]_s'],
   ['zone1StatusReason', '__R15418_STRING[39]_s'],
   ['zone1RunningStatus', '__R15153_USINT_u'],
-  ['zone1Temperature', '__R128148_REAL_.1f'],
-  ['zone1RequiredTemperature', '__R8453_REAL_.1f'],
+  ['zone1Temperature', '__TA0A7A1CC_SINT_d'],
+  ['zone1RequiredTemperature', '__T70BDAE66_REAL_.1f'],
   ['zone1HeatingWaterTemperature', '__R8323_REAL_.1f'],
   ['zone1RequiredHeatingWaterTemperature', '__R8429_REAL_.1f'],
   ['zone1WinterSummerModeByDateState', '__R15191.1_BOOL_i'],
