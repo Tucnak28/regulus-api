@@ -9,16 +9,14 @@ const __dirname = path.dirname(__filename);
 
 const filePath = path.join(__dirname, 'temperature_log.csv');
 
-// Function to format time in a human-readable way
-function formatTime() {
+// Function to format time components
+function formatTimeComponents() {
     const date = new Date();
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    const seconds = String(date.getSeconds()).padStart(2, '0');
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    const time = `${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
+    return { year, month, day, time };
 }
 
 // Function to call the API and log data to a CSV file
@@ -32,17 +30,15 @@ async function callApiAndLogData() {
         });
 
         const data = response.data; // Axios response body
-        //console.log('API response:', data); // Log the response
-
-        const dateTime = formatTime(); // Get the formatted time
+        const { year, month, day, time } = formatTimeComponents(); // Get the formatted time components
 
         // Prepare the log entry as a CSV line
-        const logEntry = `${dateTime},${data.zone1.temperature},${data.zone1.requiredTemperature},${data.home.outdoorTemperature},${data.heatPump.rps},${data.dashboard.water.actualTemperature},${data.dashboard.water.requiredTemperature}\n`;
+        const logEntry = `${year},${month},${day},${time},${data.zone1.temperature},${data.zone1.requiredTemperature},${data.home.outdoorTemperature},${data.heatPump.rps},${data.dashboard.water.actualTemperature},${data.dashboard.water.requiredTemperature},${data.dashboard.aku.bottomTemperature},${data.dashboard.aku.requiredTemperature}\n`;
 
         // Check if the file exists
         if (!fs.existsSync(filePath)) {
             // If file doesn't exist, write the header
-            const header = 'Time,Zone1_Temperature,Zone1_RequiredTemperature,OutdoorTemperature,HeatPump_RPS,ActualWater,RequiredWater\n';
+            const header = 'Year,Month,Day,Time,Zone1_Temperature,Zone1_RequiredTemperature,OutdoorTemperature,HeatPump_RPS,ActualWater,RequiredWater,Aku_Temperature,Aku_RequiredTemperature\n';
             fs.writeFileSync(filePath, header);
         }
 
@@ -58,4 +54,4 @@ async function callApiAndLogData() {
 callApiAndLogData();
 
 // Call the function every 10 minutes (600,000 ms)
-setInterval(callApiAndLogData, 900000);
+setInterval(callApiAndLogData, 600000);
