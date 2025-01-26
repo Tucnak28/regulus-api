@@ -40,7 +40,7 @@ export const registryMapper = new Map<string, string>([
   ['zone1Status', '__R15458_STRING[20]_s'],
   ['zone1StatusReason', '__R15418_STRING[39]_s'],
   ['zone1RunningStatus', '__R15153_USINT_u'],
-  ['zone1Temperature', '__TA0A7A1CC_SINT_d'],
+  ['zone1Temperature', '__T0D2D20BE_REAL_.1f'],
   ['zone1RequiredTemperature', '__T70BDAE66_REAL_.1f'],
   ['zone1HeatingWaterTemperature', '__R8323_REAL_.1f'],
   ['zone1RequiredHeatingWaterTemperature', '__R8429_REAL_.1f'],
@@ -64,8 +64,8 @@ export const registryMapper = new Map<string, string>([
   ['zone2Humidity', '__R128178_REAL_.1f'],
   //aku
   ['akuTopTemperature', '__R8275_REAL_.1f'],
-  ['akuBottomTemperature', '__R8389_REAL_.1f'],
-  ['akuRequiredTemperature', '__R8417_REAL_.1f'],
+  ['akuBottomTemperature', '__T0E597DEC_REAL_.1f'],
+  ['akuRequiredTemperature', '__TA629D846_REAL_.1f'],
   ['akuRunningStatusFromHeatPump', '__R156298.0_BOOL_i'],
   //water
   ['waterName', '__R22640_STRING[15]_s'],

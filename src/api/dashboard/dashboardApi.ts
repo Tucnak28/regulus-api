@@ -37,13 +37,13 @@ export class DashboardApi extends AbstractApi<DashboardResponseData> {
           'zone2RequiredHeatingWaterTemperature',
           registryErrors,
         ),
-      },
+      },*/
       aku: {
-        status: getValueFromMap(schemaXmlMap, 'akuRunningStatusFromHeatPump', registryErrors) === '1',
-        topTemperature: getValueFromMap(schemaXmlMap, 'akuTopTemperature', registryErrors),
+        //status: getValueFromMap(schemaXmlMap, 'akuRunningStatusFromHeatPump', registryErrors) === '1',
+        //topTemperature: getValueFromMap(schemaXmlMap, 'akuTopTemperature', registryErrors),
         bottomTemperature: getValueFromMap(schemaXmlMap, 'akuBottomTemperature', registryErrors),
         requiredTemperature: getValueFromMap(schemaXmlMap, 'akuRequiredTemperature', registryErrors),
-      },*/
+      },
       water: {
         //status: getValueFromMap(schemaXmlMap, 'waterRunningStatusFromHeatPump', registryErrors) === '1',
         actualTemperature: getValueFromMap(schemaXmlMap, 'waterSwitchingSensorTemperature', registryErrors),

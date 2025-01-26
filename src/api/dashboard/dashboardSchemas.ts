@@ -46,7 +46,7 @@ export const dashboardResponseSchema = z.object({
   //heatPump: heatPumpSchema,
   //zone1: zoneSchema,
   //zone2: zoneSchema,
-  //aku: akuSchema,
+  aku: akuSchema,
   water: waterSchema,
   //solar: solarSchema,
   //circulation: circulationSchema.strict().openapi({
