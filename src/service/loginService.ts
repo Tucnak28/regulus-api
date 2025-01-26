@@ -18,8 +18,8 @@ export class LoginService {
   }
 
   public static async postLogin(): Promise<AxiosResponse> {
-    const user = process.env.USER;
-    const password = process.env.PASSWORD;
+    const user = process.env.REGULUS_USER;
+    const password = process.env.REGULUS_PASSWORD;
 
     const loginData: LoginData = { USER: `${user}`, PASS: `${password}` };
 
