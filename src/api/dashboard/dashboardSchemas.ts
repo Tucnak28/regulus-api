@@ -40,18 +40,18 @@ const circulationSchema = z.object({
 });
 
 export const dashboardResponseSchema = z.object({
-  outdoorTemperature: z.string().optional(),
-  rcTariff: z.string().optional(),
-  holiday: z.string().optional(),
-  heatPump: heatPumpSchema,
-  zone1: zoneSchema,
-  zone2: zoneSchema,
-  aku: akuSchema,
+  //outdoorTemperature: z.string().optional(),
+  //rcTariff: z.string().optional(),
+  //holiday: z.string().optional(),
+  //heatPump: heatPumpSchema,
+  //zone1: zoneSchema,
+  //zone2: zoneSchema,
+  //aku: akuSchema,
   water: waterSchema,
-  solar: solarSchema,
-  circulation: circulationSchema.strict().openapi({
-    description: 'Monitor response object',
-  }),
+  //solar: solarSchema,
+  //circulation: circulationSchema.strict().openapi({
+  //   description: 'Monitor response object',
+  // }),
 });
 
 export type DashboardResponseData = z.infer<typeof dashboardResponseSchema>;

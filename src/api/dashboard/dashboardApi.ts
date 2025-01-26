@@ -8,7 +8,7 @@ export class DashboardApi extends AbstractApi<DashboardResponseData> {
   generateResponse(schemaXmlMap: Map<string, string>, registryErrors: string[]): DashboardResponseData {
     console.log('Successfully fetched `/dashboard` data');
     return {
-      outdoorTemperature: getValueFromMap(schemaXmlMap, 'outdoorTemperature', registryErrors),
+      /*outdoorTemperature: getValueFromMap(schemaXmlMap, 'outdoorTemperature', registryErrors),
       rcTariff: getValueFromMap(schemaXmlMap, 'rcTariff', registryErrors) == '1' ? 'LOW' : 'HIGH',
       holiday: getValueFromMap(schemaXmlMap, 'holiday', registryErrors) == '1' ? 'ON' : 'OFF',
       heatPump: {
@@ -43,19 +43,19 @@ export class DashboardApi extends AbstractApi<DashboardResponseData> {
         topTemperature: getValueFromMap(schemaXmlMap, 'akuTopTemperature', registryErrors),
         bottomTemperature: getValueFromMap(schemaXmlMap, 'akuBottomTemperature', registryErrors),
         requiredTemperature: getValueFromMap(schemaXmlMap, 'akuRequiredTemperature', registryErrors),
-      },
+      },*/
       water: {
-        status: getValueFromMap(schemaXmlMap, 'waterRunningStatusFromHeatPump', registryErrors) === '1',
+        //status: getValueFromMap(schemaXmlMap, 'waterRunningStatusFromHeatPump', registryErrors) === '1',
         actualTemperature: getValueFromMap(schemaXmlMap, 'waterSwitchingSensorTemperature', registryErrors),
         requiredTemperature: getValueFromMap(schemaXmlMap, 'waterRequiredTemperature', registryErrors),
-      },
+      } /*
       solar: {
         status: getValueFromMap(schemaXmlMap, 'solarRunningStatus', registryErrors) === '1',
         panelTemperature: getValueFromMap(schemaXmlMap, 'solarPanelTemperature', registryErrors),
       },
       circulation: {
         status: getValueFromMap(schemaXmlMap, 'circulationRunningStatus', registryErrors) === '1',
-      },
+      },*/,
     };
   }
 }
